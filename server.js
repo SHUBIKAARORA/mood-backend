@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import OpenAI from "openai";
+import Groq from "groq-sdk";
 
 const app = express();
 app.use(
@@ -17,13 +17,10 @@ app.post("/suggest", async (req, res) => {
   try {
     const { mood } = req.body;
 
-    const client = new OpenAI({
-     apiKey: process.env.DEEPSEEK_API_KEY,
-    baseURL: "https://api.deepseek.com",
-});
+    const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
     const completion = await client.chat.completions.create({
-      model:"deepseek-chat",
+      model: "mixtral-8x7b-32768",
       messages: [
         {
           role: "system",
