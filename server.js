@@ -20,7 +20,7 @@ app.post("/suggest", async (req, res) => {
     const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
     const completion = await client.chat.completions.create({
-      model:"llama3-groq-8b-8192",
+      model:"llama-3.1-8b-instant",
       messages: [
         {
           role: "system",
