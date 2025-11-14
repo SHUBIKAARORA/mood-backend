@@ -18,11 +18,12 @@ app.post("/suggest", async (req, res) => {
     const { mood } = req.body;
 
     const client = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+     apiKey: process.env.DEEPSEEK_API_KEY,
+    baseURL: "https://api.deepseek.com",
+});
 
     const completion = await client.chat.completions.create({
-      model: "gpt-4o-mini",
+      model:"deepseek-chat",
       messages: [
         {
           role: "system",
